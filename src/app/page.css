@@ -1,10 +1,14 @@
 .container {
   padding: 20px;
   font-family: Arial, sans-serif;
+  background-color: #f9f9f9; /* fundo suave */
 }
 
 .title {
   margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
 }
 
 .table {
@@ -12,25 +16,41 @@
   min-width: 400px;
   width: 100%;
   text-align: left;
-  border: 1px solid #ccc;
+  border: none;
+  background-color: #fff;
+  border-radius: 8px;         /* cantos arredondados */
+  overflow: hidden;           /* aplica arredondamento também no conteúdo */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* sombra leve */
 }
 
 .table thead {
-  background-color: #f2f2f2;
+  background: linear-gradient(90deg, #ececec, #f7f7f7); /* degradezinho suave */
 }
 
 .table thead th {
-  padding: 10px;
-  border-bottom: 2px solid #ccc;
+  padding: 10px 12px;
+  border-bottom: 2px solid #ddd;
   text-align: left;
+  font-size: 10px;       /* título */
+  font-weight: 600;
+  color: #444;
+  text-transform: uppercase; /* deixa com cara de título */
+  letter-spacing: 0.5px; 
 }
 
 .table tbody tr:nth-child(even) {
   background-color: #fafafa;
 }
 
+.table tbody tr:hover {
+  background-color: #f1f1f1;  /* efeito hover */
+  transition: background 0.2s;
+}
+
 .table tbody td {
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-bottom: 1px solid #eee;
   text-align: left;
+  font-size: 8px;        /* texto */
+  color: #555;
 }

@@ -1,28 +1,29 @@
+import { Key } from "react";
 import "./page.css";
+import Papa from "papaparse";
 
 export default async function Home() {
   const linkCSV =
-    "https://docs.google.com/spreadsheets/d/1glkGATn0A6_fdyDNxaKu6frHzvSuULyEMVrqsjrv4b8/gviz/tq?tqx=out:csv";
+    "https://docs.google.com/spreadsheets/d/1puUc-A-JBG1mUYCDaEEXFMJDgb2je46ktxTdb6vaWDs/gviz/tq?tqx=out:csv";
 
   const res = await fetch(linkCSV);
   const csv = await res.text();
 
-  // Remove aspas e espaços extras de cada célula
-  const dados = csv
-    .split("\n")
-    .map((linha) =>
-      linha
-        .split(",")
-        .map((celula) => celula.trim().replace(/^["']+|["']+$/g, ""))
-    );
+  // Parseando corretamente o CSV
+  const { data } = Papa.parse(csv, {
+    delimiter: "", // Papa tenta detectar automaticamente
+    skipEmptyLines: true,
+  });
 
-  const colunasSelecionadas = [0, 1, 2];
+  const colunasSelecionadas = [2,3,4,5,6];
 
-  const cabecalho = dados[0].filter((_, idx) =>
+  // cabeçalho na 2ª linha
+  const cabecalho = data[0].filter((_, idx) =>
     colunasSelecionadas.includes(idx)
   );
 
-  const linhas = dados.slice(1).map((linha) =>
+  // dados a partir da 3ª linha
+  const linhas = data.slice(2).map((linha) =>
     linha.filter((_, idx) => colunasSelecionadas.includes(idx))
   );
 
@@ -38,7 +39,7 @@ export default async function Home() {
           </tr>
         </thead>
         <tbody>
-          {linhas.map((linha, i) => (
+          {linhas.map((linha: any[], i: Key | null | undefined) => (
             <tr key={i}>
               {linha.map((celula, j) => (
                 <td key={j}>{celula}</td>
