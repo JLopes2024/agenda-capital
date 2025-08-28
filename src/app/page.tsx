@@ -1,7 +1,7 @@
-"use client"; // Next.js 13+ Client Component
+"use client"; // necessário para Client Component
 import { useEffect, useState } from "react";
 import Papa from "papaparse";
-import "./page.css";
+import styles from "./page.module.css"; // CSS Module
 
 export default function Home() {
   const [cabecalho, setCabecalho] = useState<string[]>([]);
@@ -15,26 +15,20 @@ export default function Home() {
         const res = await fetch(linkCSV);
         const csv = await res.text();
 
-        const { data } = Papa.parse(csv, { skipEmptyLines: true });
+        const { data } = Papa.parse<string[]>(csv, { skipEmptyLines: true });
 
         const colunasSelecionadas = [2, 3, 4, 5, 6];
 
         // cabeçalho na 2ª linha (índice 1)
-        const header =
-          data[0] && Array.isArray(data[0])
-            ? data[0].filter((_: any, idx: number) =>
-                colunasSelecionadas.includes(idx)
-              )
-            : [];
+        const header: string[] =
+          data[1]?.filter((_, idx) => colunasSelecionadas.includes(idx)) || [];
         setCabecalho(header);
 
         // dados a partir da 3ª linha (índice 2)
-        const rows =
+        const rows: string[][] =
           data.length > 2
-            ? data.slice(2).map((linha: any) =>
-                linha.filter((_: any, idx: number) =>
-                  colunasSelecionadas.includes(idx)
-                )
+            ? data.slice(2).map((linha: string[]) =>
+                linha.filter((_, idx) => colunasSelecionadas.includes(idx))
               )
             : [];
         setLinhas(rows);
@@ -49,9 +43,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container">
-      <h1 className="title">📊 Teste agenda SP</h1>
-      <table className="table" border={1} cellPadding={8}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>📊 Teste agenda SP</h1>
+      <table className={styles.table} border={1} cellPadding={8}>
         <thead>
           <tr>
             {cabecalho.map((col, i) => (

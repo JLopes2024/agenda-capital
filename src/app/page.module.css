@@ -21,16 +21,10 @@
 
 .table thead th {
   padding: 10px;
-  border-bottom: 2px solid #ccc;
-  text-align: left;
-}
-
-.table tbody tr:nth-child(even) {
-  background-color: #fafafa;
+  border: 1px solid #ccc;
 }
 
 .table tbody td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
+  border: 1px solid #ccc;
+  padding: 8px;
 }
