@@ -40,7 +40,7 @@ export default async function Home() {
 
   return (
     <div className="container">
-      <h1 className="title">📊 Teste agenda SP</h1>
+      <h1 className="title">Agenda Externa - SP Capital</h1>
 
       {dados.length === 0 ? (
         <p>Carregando dados...</p>
