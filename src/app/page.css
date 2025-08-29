@@ -7,7 +7,7 @@
 
 /* Título */
 .title {
-  font-size: 18px; /* um pouco maior que antes */
+  font-size: 18px; 
   font-weight: 700;
   margin-bottom: 16px;
   color: #221e69;
@@ -65,4 +65,10 @@ p {
 .table tbody td {
   padding: 10px;
   border-bottom: 1px solid #00000022;
+}
+
+/* Negrito no nome do evento (primeira coluna) */
+.table tbody td:first-child {
+  font-weight: 700;
+  color: #221e69; /* opcional, para destacar ainda mais */
 }
