@@ -25,7 +25,7 @@ export default async function Home() {
   }
 
   // Colunas desejadas (ajuste conforme seu CSV real)
-  const colunasSelecionadas = [2, 3, 4, 5,6,23];
+  const colunasSelecionadas = [2, 3, 4, 5,23];
 
   const cabecalho = dados.length
     ? dados[0].filter((_, idx) => colunasSelecionadas.includes(idx))
