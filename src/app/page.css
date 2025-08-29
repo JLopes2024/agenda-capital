@@ -1,61 +1,70 @@
+/* Container principal */
 .container {
   padding: 20px;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   color: #333;
+  background-color: #f4f4ff; /* leve tom futurista */
 }
 
+/* Título */
 .title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 14px;
-  color: #222;
+  font-size: 18px; /* um pouco maior que antes */
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #221e69;
   letter-spacing: 0.5px;
 }
 
+/* Parágrafos */
 p {
   font-size: 14px;
-  line-height: 1.5;
-  color: #f80000;
+  line-height: 1.6;
+  color: #4a47a3; /* roxo suave, mais elegante que vermelho */
 }
 
+/* Tabela */
 .table {
-  border-collapse: collapse;
-  min-width: 400px;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
-  text-align: justify;
-  border-radius: 8px;
+  text-align: left;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.08);
-  font-size: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-size: 12px;
+  background-color: #fff;
 }
 
+/* Cabeçalho da tabela */
 .table thead {
   background: linear-gradient(135deg, #221e69, #4a47a3);
   color: #fff;
-  align-items: center;
 }
 
 .table thead th {
-  padding: 10px;
+  padding: 12px 10px;
   font-size: 12px;
   font-weight: 600;
   text-align: left;
 }
 
+/* Linhas da tabela */
 .table tbody tr {
-  transition: background 0.2s ease-in-out;
+  transition: background 0.3s, transform 0.2s;
+  cursor: pointer;
 }
 
 .table tbody tr:nth-child(even) {
-  background-color: #f9f9f9b7;
+  background-color: #f9f9ff;
 }
 
 .table tbody tr:hover {
-  background-color: #f1f1ff;
-  overflow-y: auto;
+  background-color: #e8e6ff;
+  transform: translateX(3px);
 }
 
+/* Células */
 .table tbody td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #00000033;
+  padding: 10px;
+  border-bottom: 1px solid #00000022;
 }
