@@ -1,11 +1,24 @@
+/* ===================== */
+/* Fundo da página */
+body {
+  background-image: url('//public/AGENDAINTERNA2025_COLODEDEUS-1-6_page-0001.jpg'); /* substitua pelo caminho da imagem */
+  background-size: cover;       /* cobre toda a tela */
+  background-position: center;  /* centraliza a imagem */
+  background-repeat: no-repeat; /* evita repetição */
+  background-attachment: fixed; /* fica fixa ao rolar a página */
+}
+
 /* Container principal */
+/* ===================== */
 .container {
   padding: 20px;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   color: #333;
 }
 
+/* ===================== */
 /* Título */
+/* ===================== */
 .title {
   font-size: 18px; 
   font-weight: 700;
@@ -14,13 +27,17 @@
   letter-spacing: 0.5px;
 }
 
+/* ===================== */
 /* Parágrafos */
+/* ===================== */
 p {
   font-size: 14px;
   line-height: 1.6;
 }
 
-/* Tabela */
+/* ===================== */
+/* Tabela principal */
+/* ===================== */
 .table {
   border-collapse: separate;
   border-spacing: 0;
@@ -33,7 +50,6 @@ p {
   background-color: #fff;
 }
 
-/* Cabeçalho da tabela */
 .table thead {
   background: linear-gradient(135deg, #221e69, #4a47a3);
   color: #fff;
@@ -46,7 +62,6 @@ p {
   text-align: left;
 }
 
-/* Linhas da tabela */
 .table tbody tr {
   transition: background 0.3s, transform 0.2s;
   cursor: pointer;
@@ -61,19 +76,115 @@ p {
   transform: translateX(3px);
 }
 
-/* Células */
 .table tbody td {
   padding: 10px;
   border-bottom: 1px solid #00000022;
 }
 
-/* Negrito no nome do evento (primeira coluna) */
 .table tbody td:first-child {
   font-weight: 700;
-  color: #221e69; /* opcional, para destacar ainda mais */
+  color: #221e69;
 }
 
-.alerta {
-  background-color: orange !important;
+/* ===================== */
+/* Cores nas linhas da tabela principal */
+/* ===================== */
+tr.hoje td {
+  background-color: #fd2323 !important; /* vermelho intenso */
+  color: #000000 !important;            
+  font-style: italic;
+}
+
+tr.alerta td {
+  background-color: rgb(255, 238, 0) !important; /* amarelo */
+  color: white !important;
+  font-weight: bold;
+}
+
+tr.aviso td {
+  background-color: rgb(255, 184, 150) !important; /* laranja */
   color: black !important;
+  font-weight: bold;
+}
+
+tr.dias td {
+  background-color: rgb(154, 162, 236) !important; /* azul claro */
+  color: black !important;
+  font-weight: bold;
+}
+
+/* ===================== */
+/* Legenda + Botão Container */
+/* ===================== */
+.legenda-botao-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* quebra linha se necessário */
+}
+
+/* ===================== */
+/* Mini tabela de legenda */
+/* ===================== */
+.table.legenda {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table.legenda td,
+.table.legenda th {
+  padding: 4px 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Cores das células da legenda */
+.legenda td.passado,
+.legenda td.hoje {
+  background-color: #fd2323 !important;
+  color: #fff;
+}
+
+.legenda td.alerta {
+  background-color: rgb(255, 238, 0) !important;
+  color: #000;
+}
+
+.legenda td.aviso {
+  background-color: rgb(255, 184, 150) !important;
+  color: #000;
+}
+
+.legenda td.dias {
+  background-color: rgb(154, 162, 236) !important;
+  color: #000;
+}
+
+/* ===================== */
+/* Botão estilizado */
+/* ===================== */
+.button-planilha {
+  background: linear-gradient(135deg, #4a47a3, #221e69);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.button-planilha:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button-planilha:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
