@@ -1,13 +1,4 @@
 /* ===================== */
-/* Fundo da página */
-body {
-  background-image: url('//public/AGENDAINTERNA2025_COLODEDEUS-1-6_page-0001.jpg'); /* substitua pelo caminho da imagem */
-  background-size: cover;       /* cobre toda a tela */
-  background-position: center;  /* centraliza a imagem */
-  background-repeat: no-repeat; /* evita repetição */
-  background-attachment: fixed; /* fica fixa ao rolar a página */
-}
-
 /* Container principal */
 /* ===================== */
 .container {

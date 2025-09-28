@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Papa from "papaparse";
+import Papa from "papaparse"; // npm install papaparse
+import "./page.css";
 
 export default function Home() {
   const [dados, setDados] = useState<string[][]>([]);
   const linkCSV =
     "https://docs.google.com/spreadsheets/d/1puUc-A-JBG1mUYCDaEEXFMJDgb2je46ktxTdb6vaWDs/gviz/tq?tqx=out:csv";
 
-  const colunasSelecionadas = [2, 3, 4, 5, 16, 23];
+  const colunasSelecionadas = [2, 3, 4, 5, 16, 23]; // ajuste conforme seu CSV
 
   useEffect(() => {
     async function fetchCSV() {
@@ -15,11 +16,15 @@ export default function Home() {
         const res = await fetch(linkCSV, { cache: "no-store" });
         const csv = await res.text();
         const parsed = Papa.parse<string[]>(csv, { skipEmptyLines: true });
-        if (parsed.data) setDados(parsed.data as string[][]);
-      } catch (err) {
-        console.error(err);
+
+        if (parsed.data) {
+          setDados(parsed.data as string[][]);
+        }
+      } catch (error) {
+        console.error("Erro ao carregar CSV:", error);
       }
     }
+
     fetchCSV();
   }, []);
 
@@ -45,16 +50,24 @@ export default function Home() {
           );
 
           let classe = "";
-          const dataEvento = parseDateDMY(valores[1]);
+          const dataBruta = valores[1]; // supondo que a data está na segunda coluna selecionada
+          const dataEvento = parseDateDMY(dataBruta);
+
           if (dataEvento) {
-            const diffDias = Math.floor(
-              (dataEvento.getTime() - hoje.getTime()) / (1000 * 60 * 60 * 24)
-            );
-            if (diffDias === 0) classe = "table-danger"; // HOJE
-            else if (diffDias < 0) classe = "table-secondary"; // Passado
-            else if (diffDias <= 3) classe = "table-warning"; // 1-3 dias
-            else if (diffDias <= 7) classe = "table-orange"; // 4-7 dias (custom)
-            else if (diffDias <= 15) classe = "table-info"; // 8-15 dias
+            const diffMs = dataEvento.getTime() - hoje.getTime();
+            const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24)); // arredonda para dias inteiros
+
+            if (diffDias === 0) {
+              classe = "hoje"; // exatamente hoje
+            } else if (diffDias < 0) {
+              classe = "passado"; // evento já ocorreu
+            } else if (diffDias <= 3) {
+              classe = "alerta"; // 1 a 3 dias
+            } else if (diffDias <= 7) {
+              classe = "aviso"; // 4 a 7 dias
+            } else if (diffDias <= 15) {
+              classe = "dias"; // 8 a 15 dias
+            }
           }
 
           return { valores, classe };
@@ -62,16 +75,16 @@ export default function Home() {
       : [];
 
   return (
-    <div className="container my-4">
-      <h1 className="mb-4 text-primary">Agenda Externa - SP Capital</h1>
+    <div className="container">
+      <h1 className="title">Agenda Externa - SP Capital</h1>
 
       {dados.length === 0 ? (
         <p>Carregando dados...</p>
       ) : (
         <>
           {/* Tabela principal */}
-          <table className="table table-bordered table-hover rounded">
-            <thead className="table-dark">
+          <table className="table" border={1} cellPadding={8}>
+            <thead>
               <tr>
                 {cabecalho.map((col, i) => (
                   <th key={i}>{col}</th>
@@ -89,9 +102,15 @@ export default function Home() {
             </tbody>
           </table>
 
-          {/* Legenda + botão */}
-          <div className="d-flex justify-content-center align-items-center mt-3 gap-4 flex-wrap">
-            <table className="table table-sm table-bordered mb-0">
+          {/* Container flexível para legenda + botão */}
+          <div className="legenda-botao-container">
+            {/* Mini tabela de legenda */}
+            <table
+              className="table legenda"
+              border={1}
+              cellPadding={4}
+              style={{ width: "fit-content" }}
+            >
               <thead>
                 <tr>
                   <th>Cor</th>
@@ -100,30 +119,31 @@ export default function Home() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="table-danger">&nbsp;</td>
+                  <td className="hoje" style={{ width: "50px" }}>&nbsp;</td>
                   <td>HOJE</td>
                 </tr>
                 <tr>
-                  <td className="table-warning">&nbsp;</td>
+                  <td className="alerta" style={{ width: "50px" }}>&nbsp;</td>
                   <td>1-3 dias</td>
                 </tr>
                 <tr>
-                  <td style={{ backgroundColor: "orange" }}>&nbsp;</td>
+                  <td className="aviso" style={{ width: "50px" }}>&nbsp;</td>
                   <td>4-7 dias</td>
                 </tr>
                 <tr>
-                  <td className="table-info">&nbsp;</td>
+                  <td className="dias" style={{ width: "50px" }}>&nbsp;</td>
                   <td>8-15 dias</td>
                 </tr>
                 <tr>
-                  <td className="table-light">&nbsp;</td>
-                  <td>15+ dias</td>
+                  <td className="" style={{ width: "50px" }}>&nbsp;</td>
+                  <td>15 dias +</td>
                 </tr>
               </tbody>
             </table>
 
+            {/* Botão */}
             <button
-              className="btn btn-primary btn-lg"
+              className="button-planilha"
               onClick={() =>
                 window.open(
                   "https://docs.google.com/spreadsheets/d/1puUc-A-JBG1mUYCDaEEXFMJDgb2je46ktxTdb6vaWDs/edit?gid=1878849380#gid=1878849380",
