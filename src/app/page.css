@@ -72,3 +72,8 @@ p {
   font-weight: 700;
   color: #221e69; /* opcional, para destacar ainda mais */
 }
+
+.alerta {
+  background-color: orange !important;
+  color: black !important;
+}
