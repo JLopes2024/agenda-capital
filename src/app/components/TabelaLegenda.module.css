@@ -1,0 +1,51 @@
+/* ===================== */
+/* Legenda + Botão Container */
+/* ===================== */
+.legenda-botao-container {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente */
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;         /* quebra linha se necessário */
+  text-align: center;      /* garante que conteúdo dentro fique centralizado */
+}
+
+/* ===================== */
+/* Mini tabela de legenda */
+/* ===================== */
+.table.legenda {
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 0 auto;          /* centraliza a tabela dentro do container */
+}
+
+.table.legenda td,
+.table.legenda th {
+  padding: 4px 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Cores das células da legenda */
+.legenda td.passado,
+.legenda td.hoje {
+  background-color: #fd2323 !important;
+  color: #fff;
+}
+
+.legenda td.alerta {
+  background-color: rgb(255, 238, 0) !important;
+  color: #000;
+}
+
+.legenda td.aviso {
+  background-color: rgb(255, 184, 150) !important;
+  color: #000;
+}
+
+.legenda td.dias {
+  background-color: rgb(154, 162, 236) !important;
+  color: #000;
+}

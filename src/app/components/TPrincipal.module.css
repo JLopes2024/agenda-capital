@@ -1,0 +1,78 @@
+
+/* ===================== */
+/* Tabela principal */
+/* ===================== */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-size: 12px;
+  background-color: #fff;
+}
+
+.table thead {
+  background: linear-gradient(135deg, #221e69, #4a47a3);
+  color: #fff;
+}
+
+.table thead th {
+  padding: 12px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.table tbody tr {
+  transition: background 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9ff;
+}
+
+.table tbody tr:hover {
+  background-color: #e8e6ff;
+  transform: translateX(3px);
+}
+
+.table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #00000022;
+}
+
+.table tbody td:first-child {
+  font-weight: 700;
+  color: #221e69;
+}
+
+/* ===================== */
+/* Cores nas linhas da tabela principal */
+/* ===================== */
+tr.hoje td {
+  background-color: #fd2323 !important; /* vermelho intenso */
+  color: #000000 !important;            
+  font-style: italic;
+}
+
+tr.alerta td {
+  background-color: rgb(255, 238, 0) !important; /* amarelo */
+  color: white !important;
+  font-weight: bold;
+}
+
+tr.aviso td {
+  background-color: rgb(255, 184, 150) !important; /* laranja */
+  color: black !important;
+  font-weight: bold;
+}
+
+tr.dias td {
+  background-color: rgb(154, 162, 236) !important; /* azul claro */
+  color: black !important;
+  font-weight: bold;
+}
